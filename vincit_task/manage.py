@@ -6,7 +6,7 @@ from django.core.management.commands.runserver import Command as runserver
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vincit-task.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'task_backend.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
