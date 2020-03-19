@@ -5,6 +5,7 @@ import re
 DATABASE = 'iot_db.sqlite'
 TABLE = 'cubesensors_data'
 
+
 def sensordata_to_df():
     """
     Fetches sensordata from selected database
@@ -13,12 +14,14 @@ def sensordata_to_df():
     sensordata_query = "SELECT * FROM {table}".format(table=TABLE)
     return pd.read_sql_query(sensordata_query, connection)
 
+
 def convert_temperature(temperature):
     """
-    Temperatures are saved to database as integers. 
+    Temperatures are saved to database as integers.
     This function converts temperatures to floats with 3 decimals.
     """
     return round(temperature/100, 3)
+
 
 def escape_ansi(ansi_str):
     """

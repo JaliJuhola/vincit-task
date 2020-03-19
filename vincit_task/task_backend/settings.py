@@ -15,9 +15,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -55,8 +53,6 @@ REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
     'UNAUTHENTICATED_USER': None
 }
-
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

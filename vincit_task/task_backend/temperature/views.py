@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from task_backend.temperature.utils import convert_temperature, sensordata_to_df, escape_ansi
 
+
 class TemperatureDifferenceView(APIView):
     """
     Temperature difference between get parameter sensor and current in Helsinki.
@@ -47,6 +48,7 @@ class TemperatureDifferenceView(APIView):
         temperature_difference = temperature_sensor - temperature_helsinki
         return temperature_difference
 
+
 class SummaryView(APIView):
     """
     Returns summary of temperatures groupped by sensor
@@ -58,13 +60,12 @@ class SummaryView(APIView):
         return Response(data={'sensors': results_by_sensor})
 
     # This aggregation is pretty heavy and results so this could be scheduled and batch calculated by every minute or so.
-
     def aggregation_avg_and_count_by_sensor(self):
         """
         aggregates averages and counts by @sensor_id
         """
         sensordata_df = sensordata_to_df()
-        aggregations = sensordata_df.groupby('SensorId')['Temperature'].agg(['mean','count'])
+        aggregations = sensordata_df.groupby('SensorId')['Temperature'].agg(['mean', 'count'])
         aggregations['avgTemp'] = aggregations['mean'].apply(convert_temperature)
         aggregations = aggregations.reset_index().drop(['mean'], axis=1)
         aggregations.rename(columns={'SensorId':'sensorId'}, inplace=True)

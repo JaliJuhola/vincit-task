@@ -6,4 +6,3 @@ urlpatterns = [
     path(r'diff/<str:sensor_id>', TemperatureDifferenceView.as_view()),
     path(r'summary', SummaryView.as_view()),
 ]
-    
